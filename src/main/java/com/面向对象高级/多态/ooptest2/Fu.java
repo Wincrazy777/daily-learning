@@ -1,6 +1,6 @@
 package com.面向对象高级.多态.ooptest2;
 
-public class Fu {
+public class Fu extends Ye{
     String name="Fu";
 
     public void fushow(){
