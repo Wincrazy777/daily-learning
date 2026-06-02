@@ -13,4 +13,9 @@ public class MasterStudent extends Student{
         System.out.println("研究生正在学习");
     }
 
+    @Override
+    public void sleep() {
+        System.out.println("研究生正在高级公寓睡觉");
+    }
+
 }

@@ -10,7 +10,7 @@ public class GeneralTeacher extends Teacher{
 
     @Override
     public void teach() {
-        System.out.println("普通教师正在授课");
+        System.out.println("通识课教师正在授课");
     }
 
 }
