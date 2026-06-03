@@ -1,10 +1,10 @@
 package com.面向对象高级.继承.oopextendtest7;
 
-public class BacheiorStudent extends Student{
-    public BacheiorStudent() {
+public class BachelorStudent extends Student{
+    public BachelorStudent() {
     }
 
-    public BacheiorStudent(String name, int age, String grade) {
+    public BachelorStudent(String name, int age, String grade) {
         super(name, age, grade);
     }
 

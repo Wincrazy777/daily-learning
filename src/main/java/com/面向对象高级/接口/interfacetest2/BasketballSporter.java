@@ -1,10 +1,10 @@
 package com.面向对象高级.接口.interfacetest2;
 
-public class BasktballSporter extends Sporter implements English {
-    public BasktballSporter() {
+public class BasketballSporter extends Sporter implements English {
+    public BasketballSporter() {
     }
 
-    public BasktballSporter(String name, String age) {
+    public BasketballSporter(String name, String age) {
         super(name, age);
     }
 

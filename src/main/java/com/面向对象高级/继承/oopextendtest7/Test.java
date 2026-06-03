@@ -2,7 +2,7 @@ package com.面向对象高级.继承.oopextendtest7;
 
 public class Test {
     public static void main(String[] args) {
-        BacheiorStudent bs = new BacheiorStudent("张三", 20, "大一");
+        BachelorStudent bs = new BachelorStudent("张三", 20, "大一");
         bs.study();
         bs.sleep();
         MasterStudent ms = new MasterStudent("李四", 25, "研一");

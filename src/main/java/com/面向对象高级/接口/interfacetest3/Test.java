@@ -8,7 +8,7 @@ public class Test {
     // 1.默认方法不是抽象方法，所以不强制重写，但是如果被重写，重写的时候去掉default
     // 2.public可以被省略，default不能省略
     // 3.如果实现了多个接口，多个接口中存在相同名字的默认方法，子类就必须对方法重写
-    Intermpl li = new Intermpl();
+    InterImpl li = new InterImpl();
     li.function();
 
     }

@@ -1,8 +1,8 @@
 package com.面向对象高级.接口.interfacetest3;
 
-public class Intermpl implements InterA,InterB{
+public class InterImpl implements InterA,InterB{
 
-    public Intermpl() {
+    public InterImpl() {
     }
     @Override
     public void method1(){

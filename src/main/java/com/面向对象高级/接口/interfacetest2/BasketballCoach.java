@@ -1,10 +1,10 @@
 package com.面向对象高级.接口.interfacetest2;
 
-public class BasktballCoach extends Coach implements English {
-    public BasktballCoach() {
+public class BasketballCoach extends Coach implements English {
+    public BasketballCoach() {
     }
 
-    public BasktballCoach(String name, String age) {
+    public BasketballCoach(String name, String age) {
         super(name, age);
     }
 
