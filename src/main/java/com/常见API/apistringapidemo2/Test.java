@@ -23,24 +23,26 @@ public class Test {
         String rightPassword = "123456";
 
         //2.让用户键盘录入登录的用户名和密码
-        Scanner sc = new Scanner(System.in);
-        //3.比较用户输入的用户名和密码与正确的用户名和密码是否相等
-        for (int i = 1; i <= 3; i++) {
-            System.out.println("请输入用户名：");
-            String username = sc.next();
-            System.out.println("请输入密码：");
-            String password = sc.next();
+        try (Scanner sc = new Scanner(System.in)) {
+            //3.比较用户输入的用户名和密码与正确的用户名和密码是否相等
+            for (int i = 1; i <= 3; i++) {
+                System.out.println("请输入用户名：");
+                String username = sc.next();
+                System.out.println("请输入密码：");
+                String password = sc.next();
 
-            boolean result = username.equals(rightUsername) && password.equals(rightPassword);
-            if (result == true) {
-                System.out.println("登录成功");
-                break;
-            } else {
-                // 如果登录失败，循环继续，总共有三次机会
-                if (i <= 2) {
-                    System.out.println("登录失败，还剩下" + (3 - i) + "次机会");
+                boolean result = username.equals(rightUsername) && password.equals(rightPassword);
+                //对布尔类型的变量进行判断，建议直接把变量写在小括号当中
+                if (result) {
+                    System.out.println("登录成功");
+                    break;
                 } else {
-                    System.out.println("登录失败，账号" + username + "被锁定");
+                    // 如果登录失败，循环继续，总共有三次机会
+                    if (i <= 2) {
+                        System.out.println("登录失败，还剩下" + (3 - i) + "次机会");
+                    } else {
+                        System.out.println("登录失败，账号" + username + "被锁定");
+                    }
                 }
             }
         }
