@@ -1,6 +1,6 @@
-package com.常见API.apistringapidemo7;
+package com.常见API.String.demo7;
 
-public class ArrayUtil {
+public class ArrayUtil2 {
 
     public static String arrayToString2(int[] arr) {
         //创建

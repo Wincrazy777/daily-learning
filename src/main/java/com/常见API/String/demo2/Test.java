@@ -1,4 +1,4 @@
-package com.常见API.apistringapidemo2;
+package com.常见API.String.demo2;
 
 import java.util.Scanner;
 

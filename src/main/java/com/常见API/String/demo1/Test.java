@@ -1,4 +1,4 @@
-package com.常见API.apistringapidemo1;
+package com.常见API.String.demo1;
 
 public class Test {
     public static void main(String[] args) {

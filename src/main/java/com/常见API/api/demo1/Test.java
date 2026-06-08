@@ -1,4 +1,4 @@
-package com.常见API.apistringapidemo;
+package com.常见API.api.demo1;
 
 //定位Random的位置
 //扩展：在什么情况下，我不需要导包

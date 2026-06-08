@@ -1,4 +1,4 @@
-package com.常见API.apistringapidemo4;
+package com.常见API.String.demo4;
 
 import java.io.PrintStream;
 import java.util.Scanner;

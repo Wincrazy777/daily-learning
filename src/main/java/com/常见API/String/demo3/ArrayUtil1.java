@@ -1,7 +1,7 @@
-package com.常见API.apistringapidemo3;
+package com.常见API.String.demo3;
 
-public class ArrayUtil {
-    private ArrayUtil(){
+public class ArrayUtil1 {
+    private ArrayUtil1(){
 
     }
 
