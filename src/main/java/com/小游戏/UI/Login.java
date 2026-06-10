@@ -94,6 +94,9 @@ public class Login {
                 }
                 if (rightpasswd.equals(passwd)) {
                     System.out.println("登录成功");
+                    //创建FightGame类的对象，并调用方法启动游戏
+                    FightGame fg = new FightGame();
+                    fg.gameStart(username);
                     break;
                 }else{
                     System.out.println("登录失败，密码输入错误");

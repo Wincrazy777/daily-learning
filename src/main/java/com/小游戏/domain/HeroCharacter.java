@@ -14,9 +14,21 @@ public class HeroCharacter extends Character {
         skillList = new ArrayList<>();
     }
 
-    public HeroCharacter(String name, int HP, int maxHP, int attack, int defense, ArrayList<String> skillList) {
+    public HeroCharacter(String name, int HP, int maxHP, int attack, int defense) {
         super(name, HP, maxHP, attack, defense);
-        skillList = new ArrayList<>();
+        this.skillList = new ArrayList<>();
+    }
+
+    //行为：用来遍历技能列表
+    public String showSkill() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < skillList.size(); i++) {
+            sb.append(skillList.get(i));
+            if (i != skillList.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
     }
 
 }
