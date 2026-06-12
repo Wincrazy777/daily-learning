@@ -86,8 +86,15 @@ public class FightGame {
 
                 //5.4玩家回合，选择行动(1 普通攻击 / 2 强力一击 / 3 生命汲取)
                 playerTurn(player, enemy);
-                //我打敌人一下
+
+                //5.5 判断敌人是否被击败
                 //判断敌人的血量是否为0(结束内循环)
+                if(!enemy.isAlive()){
+                    System.out.println("🎆 恭喜你,你击败了"+enemy.name);
+                    // 我方胜利了，连胜计数器++
+                    wins++;
+                    break;
+                }
                 //敌人打我一下
                 //判断我的血量是否为0,如果为0,结束整个游戏
                 //如果我的血量不为0,继续执行内循环,开始下一个回合 round++
