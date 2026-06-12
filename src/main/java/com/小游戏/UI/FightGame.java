@@ -73,16 +73,19 @@ public class FightGame {
 
             //5.3 开始跟抽取到敌人进行战斗
             System.out.println("==============================================");
-            System.out.println("⚔️ 第"+count+"场战斗开始！,对手是"+enemy.name);
+            System.out.println("⚔️ 第" + count + "场战斗开始！,对手是" + enemy.name);
             //    回合制(你打我一下我打你一下)
             //    内循环：跟单个敌人进行多轮战斗,知道有一方的血量为0才会结束
             int round = 1;
-            while (player.isAlive()) { 
+            while (player.isAlive()) {
                 //显示双方的状态(生命值)
                 System.out.println("=========================================");
-                System.out.println("⚔️ 第"+round+"回合开始！");
+                System.out.println("⚔️ 第" + round + "回合开始！");
                 System.out.println(getHealthBar(player.name, player.HP, player.maxHP));
+                System.out.println(getHealthBar(enemy.name, enemy.HP, enemy.maxHP));
 
+                //5.4玩家回合，选择行动(1 普通攻击 / 2 强力一击 / 3 生命汲取)
+                playerTurn(player, enemy);
                 //我打敌人一下
                 //判断敌人的血量是否为0(结束内循环)
                 //敌人打我一下
@@ -153,7 +156,7 @@ public class FightGame {
             player.skillList.add("生命回复");
 
             //展示创建的角色属性
-            player.show();
+            System.out.println(player.show());
 
             //把玩家的对象返回
             return player;
@@ -161,19 +164,77 @@ public class FightGame {
     }
 
     //定义一个方法打印敌我双方的血条
-    public String getHealthBar(String name, int HP, int maxHP){
-        int barLength=20;
-        int filled =(int) ((HP * 1.0 / maxHP) *barLength);
+    public String getHealthBar(String name, int HP, int maxHP) {
+        int barLength = 20;
+        int filled = (int) ((HP * 1.0 / maxHP) * barLength);
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(":[");
         for (int i = 0; i < barLength; i++) {
-            if(i < filled){
+            if (i < filled) {
                 sb.append("█");
-            }else{
+            } else {
                 sb.append(" ");
             }
         }
         sb.append("]").append(HP).append("/").append(maxHP).append(" HP");
         return sb.toString();
+    }
+
+    // 玩家回合：选择行动(1 普通攻击 2 强力一击 3 生命汲取)
+    public void playerTurn(HeroCharacter player, EnemyCharacter enemy) {
+        System.out.println("==== 你的回合 ===");
+        System.out.println("1.普通攻击");
+        System.out.println("2.强力一击");
+        System.out.println("3.生命汲取");
+        System.out.println("选择行动(1-3)");
+        try (Scanner sc = new Scanner(System.in)) {
+            String choose = sc.next();
+            switch (choose) {
+                default:
+                    System.out.println("没有这个操作,默认使用普通攻击");
+                case "1":
+                    // 我方的攻击力 - 对方的防御力 = 伤害值
+                    int damage1 = calculateDamage(player.attack, enemy.defense);
+                    System.out.println("⚔️ 你对" + enemy.name + "造成了" + damage1 + "点伤害");
+                    //敌人扣血
+                    enemy.takeDamage(damage1);
+                    break;
+                case "2":
+                    // 消耗10HP 造成180%攻击力的伤害
+                    if (player.HP > 10) {
+                        player.takeDamage(10);
+                        int damage2 = calculateDamage((int) (player.attack * 1.8), enemy.defense);
+                        System.out.println("💥 消耗10HP,你对" + enemy.name + "造成了" + damage2 + "点伤害");
+                        enemy.takeDamage(damage2);
+                    } else {
+                        System.out.println("体力不足,攻击失败");
+                    }
+                    break;
+                case "3":
+                    // 扣除10点生命值,恢复0-20点生命值
+                    if (player.HP > 10) {
+                        player.takeDamage(10);
+                        //恢复血量
+                        Random r = new Random();
+                        int healHP = r.nextInt(21);
+                        player.heal(healHP);
+                        System.out.println("❤️ 你使用了生命汲取,回复了" + healHP + "点生命值");
+                    } else {
+                        System.out.println("生命值不足,恢复生命失败");
+                    }
+                    break;
+            }
+        }
+    }
+
+    //用来计算双方战斗的时候，造成的伤害
+    //普通攻击的调用方式：calculateDamage（我方攻击力，对方的防御力）
+    ////技能攻击的调用方式：calculateDamage（我方攻击力*百分比，对方的防御力）
+    public int calculateDamage(int attack, int defense) {
+        int damage = attack - defense;
+        if (damage < 1) {
+            return 1;
+        }
+        return damage;
     }
 }
