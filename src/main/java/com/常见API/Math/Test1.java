@@ -3,7 +3,10 @@ package com.常见API.Math;
 public class Test1 {
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         isPrime(16);
+        long end = System.currentTimeMillis();
+        System.out.println("程序运行时间：" + (end - start) + "毫秒");
     }
 
     public static void isPrime(int number) {
