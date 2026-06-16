@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS sql_learn DEFAULT CHARACTER SET = 'utf8mb4';
+USE sql_learn;
