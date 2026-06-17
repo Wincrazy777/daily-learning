@@ -68,13 +68,50 @@ SELECT workaddress, COUNT(*) FROM emp GROUP BY workaddress;
 SELECT workaddress, AVG(age) FROM emp GROUP BY workaddress;
 SELECT workaddress, COUNT(*) FROM emp GROUP BY workaddress HAVING COUNT(*) > 2;
 
--- 排序查询
-SELECT * FROM emp ORDER BY age ASC;
-SELECT * FROM emp ORDER BY age DESC;
+--分组查询
+--根据性别分组,统计男性员工和女性员工的数量
+SELECT gender, COUNT(*) FROM emp GROUP BY gender;
+
+--根据性别分组,统计男性员工和女性员工的平均年龄
+SELECT gender,AVG(age) FROM emp GROUP BY gender;
+
+--查询年龄小于45的员工,并根据工作地址分组,获取员工数量大于等于3的工作地址
+SELECT workaddress,COUNT(*) address_count FROM emp WHERE age<45 GROUP BY workaddress HAVING COUNT(*) >= 3;
+
+--排序查询
+--根据年龄对公司的员工进行升序排序
+SELECT * FROM emp ORDER BY age ASC; --asc升序排序默认
+
+--根据入职时间，对员工进行降序排序
 SELECT * FROM emp ORDER BY entrydate DESC;
+
+--根据年龄对公司进行升序排序，年龄相同，再按照入职时间进行降序排序
 SELECT * FROM emp ORDER BY age ASC, entrydate DESC;
 
--- 分页查询
-SELECT * FROM emp LIMIT 0, 5;
-SELECT * FROM emp LIMIT 5, 5;
-SELECT * FROM emp LIMIT 10, 5;
+--分页查询
+--查询第一页员工数据，每页展示10条记录
+SELECT * FROM emp LIMIT 0,10;
+
+--查询第二页员工数据，每页展示10条记录 -------->(页码-1)*展示记录数
+SELECT * FROM emp LIMIT 1,10;
+
+
+
+
+
+
+--小测试
+--查询年龄为20，21，22，23岁的女性员工信息
+SELECT age FROM emp WHERE gender='女' AND age IN(20,21,22,23);
+
+--查询性别为男，并且年龄在20-40以内的姓名为三个字的员工
+SELECT * FROM emp WHERE gender='男' AND (age>=20 AND age<=40) AND name LIKE '___'
+
+--统计员工表中，年龄小于60岁的,男性员工和女性员工的人数
+SELECT gender,count(*) FROM emp WHERE age<60 GROUP BY gender;
+
+--查询所有年龄小于等于35岁员工的姓名和年龄，并对查询结果按年龄升序排序，如果年龄相同按入职时间降序排序
+SELECT name,age FROM emp WHERE age<35 ORDER BY age ASC ,entrydate DESC;
+
+--查询性别为男，且年龄在20-40岁(含)以内的前5个员工信息，对查询的结果按年龄升序排序，年龄相同按入职时间升序排序
+SELECT * FROM emp WHERE gender = '男' AND (age BETWEEN 20 AND 40) ORDER BY age ASC,entrydate ASC LIMIT 5;
