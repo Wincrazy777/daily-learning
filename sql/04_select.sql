@@ -145,33 +145,3 @@ SELECT name, math,
         ELSE '不及格'
     END AS '数学评级'
 FROM score;
-
-
---多表查询 笛卡尔积 隐式内连接
-SELECT * FROM emp , dept;
-
-SELECT * FROM emp , dept WHERE emp.dept_id = dept.id;
-
---显式内连接
---查询每一个员工的姓名，及关联的部门的名称
-SELECT emp.name ,dept.name FROM emp , dept WHERE emp.dept_id = dept.id;
-SELECT emp.name dept.name FROM emp  INNER JOIN dept ON emp.dept_id = dept.id; 
-
---外连接
---左外连接 查询所有员工，包括没有部门的
-SELECT emp.* ,dept.name FROM emp LEFT JOIN dept ON emp.dept_id = dept.id;
--- 右外连接 查询所有部门，包括没有员工的
-SELECT emp.* ,dept.name FROM emp RIGHT JOIN dept ON emp.dept_id = dept.id;
-
---自连接
---查询员工及其所属领导的名字
-SELECT a.name , b.name FROM emp a , emp b WHERE a.managerid = b.id;
---查询所有员工及其所属领导的名字，包括没有领导的员工
-SELECT a.name '员工' , b.name '领导' FROM emp a LEFT JOIN emp.b ON a.manager = b.id;
-
---联合查询
-SELECT * FROM emp WHERE salary <5000 UNION SELECT * FROM emp WHERE age >50;
-
---子查询(嵌套查询)
---标量子查询
---查询销售部的所有员工信息
