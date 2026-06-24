@@ -6,7 +6,7 @@ SELECT * FROM account WHERE name = '张三';
 SET @@autocommit =0; --手动提交
 
 UPDATE account SET money = money - 1000 WHERE name = '张三';
-UPDATE account SET money = money + 10000 WHERE name = '李四';
+UPDATE account SET money = money + 1000 WHERE name = '李四';
 
 --提交事务
 COMMIT;
@@ -19,7 +19,7 @@ ROLLBACK;
 START TRANSACTION;
 
 UPDATE account SET money = money - 1000 WHERE name = '张三';
-UPDATE account SET money = money + 10000 WHERE name = '李四';
+UPDATE account SET money = money + 1000 WHERE name = '李四';
 
 --提交事务
 COMMIT;
