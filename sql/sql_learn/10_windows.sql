@@ -289,3 +289,17 @@ WINDOW w AS (
             category
         ORDER BY price
     );
+
+-- NTILE：将分组内的数据分成N组，NTILE(3)将数据分成3组
+SELECT
+    id,
+    category,
+    name,
+    price,
+    NTILE(3) OVER w AS ntile
+FROM goods
+WINDOW w AS (
+        PARTITION BY
+            category
+        ORDER BY price
+    );
