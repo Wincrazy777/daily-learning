@@ -40,12 +40,14 @@ public class RegesterJFrame extends JFrame implements MouseListener {
         //注册按钮
         JLabel registerButton = new JLabel(img("register/注册按钮.png"));
         registerButton.setBounds(100, 350, 90, 40);
+        registerButton.setName("register");
         registerButton.addMouseListener(this);
         this.getContentPane().add(registerButton);
 
         //重置按钮
         JLabel resetButton = new JLabel(img("register/重置按钮.png"));
         resetButton.setBounds(260, 350, 90, 40);
+        resetButton.setName("reset");
         resetButton.addMouseListener(this);
         this.getContentPane().add(resetButton);
 
@@ -75,9 +77,8 @@ public class RegesterJFrame extends JFrame implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         JLabel source = (JLabel) e.getSource();
-        String iconStr = source.getIcon().toString();
 
-        if (iconStr.contains("注册按钮")) {
+        if ("register".equals(source.getName())) {
             String user = username.getText();
             String pwd = new String(password.getPassword());
             String rePwd = new String(rePassword.getPassword());

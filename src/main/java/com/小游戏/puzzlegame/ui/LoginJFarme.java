@@ -19,6 +19,8 @@ public class LoginJFarme extends JFrame implements MouseListener {
 
     JTextField username = new JTextField();
     JPasswordField password = new JPasswordField();
+    JLabel loginButton = new JLabel();
+    JLabel registerButton = new JLabel();
 
     private ImageIcon img(String path) {
         return new ImageIcon(getClass().getResource("../image/" + path));
@@ -41,14 +43,16 @@ public class LoginJFarme extends JFrame implements MouseListener {
         this.getContentPane().add(password);
 
         //登录按钮
-        JLabel loginButton = new JLabel(img("login/登录按钮.png"));
+        loginButton = new JLabel(img("login/登录按钮.png"));
         loginButton.setBounds(133, 285, 90, 40);
+        loginButton.setName("login");
         loginButton.addMouseListener(this);
         this.getContentPane().add(loginButton);
 
         //注册按钮
-        JLabel registerButton = new JLabel(img("login/注册按钮.png"));
+        registerButton = new JLabel(img("login/注册按钮.png"));
         registerButton.setBounds(256, 285, 90, 40);
+        registerButton.setName("register");
         registerButton.addMouseListener(this);
         this.getContentPane().add(registerButton);
 
@@ -76,7 +80,7 @@ public class LoginJFarme extends JFrame implements MouseListener {
         String user = username.getText();
         String pwd = new String(password.getPassword());
 
-        if (source.getIcon().toString().contains("登录按钮")) {
+        if ("login".equals(source.getName())) {
             if (userInfo.containsKey(user) && userInfo.get(user).equals(pwd)) {
                 JOptionPane.showMessageDialog(this, "登录成功");
                 this.setVisible(false);
