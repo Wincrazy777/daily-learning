@@ -23,7 +23,9 @@ public class LoginJFarme extends JFrame implements MouseListener {
     JLabel registerButton = new JLabel();
 
     private ImageIcon img(String path) {
-        return new ImageIcon(getClass().getResource("../image/" + path));
+        java.net.URL url = getClass().getResource("/puzzlegame/image/" + path);
+        if (url != null) return new ImageIcon(url);
+        return new ImageIcon("puzzlegame/image/" + path);
     }
 
     public LoginJFarme(){
@@ -84,7 +86,12 @@ public class LoginJFarme extends JFrame implements MouseListener {
             if (userInfo.containsKey(user) && userInfo.get(user).equals(pwd)) {
                 JOptionPane.showMessageDialog(this, "登录成功");
                 this.setVisible(false);
-                new GameJframe();
+                try {
+                    new GameJframe();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "加载游戏失败: " + ex.getMessage());
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "用户名或密码错误");
             }
