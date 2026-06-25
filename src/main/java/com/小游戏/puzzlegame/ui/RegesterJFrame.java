@@ -14,7 +14,7 @@ public class RegesterJFrame extends JFrame implements MouseListener {
     JPasswordField rePassword = new JPasswordField();
 
     private ImageIcon img(String path) {
-        return new ImageIcon(getClass().getResource("/puzzlegame/image/" + path));
+        return new ImageIcon(getClass().getResource("../image/" + path));
     }
 
     public RegesterJFrame(){

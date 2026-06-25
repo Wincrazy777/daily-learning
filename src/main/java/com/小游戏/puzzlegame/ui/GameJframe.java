@@ -42,7 +42,7 @@ public class GameJframe extends JFrame implements KeyListener, ActionListener {
 
     //图片加载工具，从classpath加载/resources/puzzlegame/image/
     private ImageIcon img(String path) {
-        return new ImageIcon(getClass().getResource("/puzzlegame/image/" + path));
+        return new ImageIcon(getClass().getResource("../image/" + path));
     }
 
     //定义一个变量，记录当前展示图片的子目录
