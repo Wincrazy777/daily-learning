@@ -13,8 +13,9 @@ public class RegesterJFrame extends JFrame implements MouseListener {
     JPasswordField password = new JPasswordField();
     JPasswordField rePassword = new JPasswordField();
 
-    JLabel registerButton = new JLabel(new ImageIcon("puzzlegame/image/register/注册按钮.png"));
-    JLabel resetButton = new JLabel(new ImageIcon("puzzlegame/image/register/重置按钮.png"));
+    private ImageIcon img(String path) {
+        return new ImageIcon(getClass().getResource("/puzzlegame/image/" + path));
+    }
 
     public RegesterJFrame(){
         this.setSize(488,500);
@@ -37,32 +38,34 @@ public class RegesterJFrame extends JFrame implements MouseListener {
         this.getContentPane().add(rePassword);
 
         //注册按钮
+        JLabel registerButton = new JLabel(img("register/注册按钮.png"));
         registerButton.setBounds(100, 350, 90, 40);
         registerButton.addMouseListener(this);
         this.getContentPane().add(registerButton);
 
         //重置按钮
+        JLabel resetButton = new JLabel(img("register/重置按钮.png"));
         resetButton.setBounds(260, 350, 90, 40);
         resetButton.addMouseListener(this);
         this.getContentPane().add(resetButton);
 
         //用户名图片
-        JLabel usernameLabel = new JLabel(new ImageIcon("puzzlegame/image/register/注册用户名.png"));
+        JLabel usernameLabel = new JLabel(img("register/注册用户名.png"));
         usernameLabel.setBounds(80, 150, 80, 20);
         this.getContentPane().add(usernameLabel);
 
         //密码图片
-        JLabel passwordLabel = new JLabel(new ImageIcon("puzzlegame/image/register/注册密码.png"));
+        JLabel passwordLabel = new JLabel(img("register/注册密码.png"));
         passwordLabel.setBounds(80, 220, 80, 20);
         this.getContentPane().add(passwordLabel);
 
         //再次输入密码图片
-        JLabel rePasswordLabel = new JLabel(new ImageIcon("puzzlegame/image/register/再次输入密码.png"));
+        JLabel rePasswordLabel = new JLabel(img("register/再次输入密码.png"));
         rePasswordLabel.setBounds(60, 290, 110, 20);
         this.getContentPane().add(rePasswordLabel);
 
         //背景图片
-        JLabel background = new JLabel(new ImageIcon("puzzlegame/image/register/background.png"));
+        JLabel background = new JLabel(img("register/background.png"));
         background.setBounds(0, 0, 470, 460);
         this.getContentPane().add(background);
 
@@ -71,7 +74,10 @@ public class RegesterJFrame extends JFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == registerButton) {
+        JLabel source = (JLabel) e.getSource();
+        String iconStr = source.getIcon().toString();
+
+        if (iconStr.contains("注册按钮")) {
             String user = username.getText();
             String pwd = new String(password.getPassword());
             String rePwd = new String(rePassword.getPassword());
@@ -93,9 +99,7 @@ public class RegesterJFrame extends JFrame implements MouseListener {
             JOptionPane.showMessageDialog(this, "注册成功");
             this.setVisible(false);
             new LoginJFarme();
-        }
-
-        if (e.getSource() == resetButton) {
+        } else {
             username.setText("");
             password.setText("");
             rePassword.setText("");

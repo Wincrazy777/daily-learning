@@ -9,18 +9,19 @@ public class LoginJFarme extends JFrame implements MouseListener {
 
     private static HashMap<String, String> userInfo = new HashMap<>();
 
-    JTextField username = new JTextField();
-    JPasswordField password = new JPasswordField();
-
-    JLabel loginButton = new JLabel(new ImageIcon("puzzlegame/image/login/登录按钮.png"));
-    JLabel registerButton = new JLabel(new ImageIcon("puzzlegame/image/login/注册按钮.png"));
-
     static {
         userInfo.put("admin", "12345");
     }
 
     public static HashMap<String, String> getUserInfo() {
         return userInfo;
+    }
+
+    JTextField username = new JTextField();
+    JPasswordField password = new JPasswordField();
+
+    private ImageIcon img(String path) {
+        return new ImageIcon(getClass().getResource("/puzzlegame/image/" + path));
     }
 
     public LoginJFarme(){
@@ -40,27 +41,29 @@ public class LoginJFarme extends JFrame implements MouseListener {
         this.getContentPane().add(password);
 
         //登录按钮
+        JLabel loginButton = new JLabel(img("login/登录按钮.png"));
         loginButton.setBounds(133, 285, 90, 40);
         loginButton.addMouseListener(this);
         this.getContentPane().add(loginButton);
 
         //注册按钮
+        JLabel registerButton = new JLabel(img("login/注册按钮.png"));
         registerButton.setBounds(256, 285, 90, 40);
         registerButton.addMouseListener(this);
         this.getContentPane().add(registerButton);
 
         //用户名图片
-        JLabel usernameLabel = new JLabel(new ImageIcon("puzzlegame/image/login/用户名.png"));
+        JLabel usernameLabel = new JLabel(img("login/用户名.png"));
         usernameLabel.setBounds(100, 135, 60, 20);
         this.getContentPane().add(usernameLabel);
 
         //密码图片
-        JLabel passwordLabel = new JLabel(new ImageIcon("puzzlegame/image/login/密码.png"));
+        JLabel passwordLabel = new JLabel(img("login/密码.png"));
         passwordLabel.setBounds(100, 195, 60, 20);
         this.getContentPane().add(passwordLabel);
 
         //背景图片
-        JLabel background = new JLabel(new ImageIcon("puzzlegame/image/login/background.png"));
+        JLabel background = new JLabel(img("login/background.png"));
         background.setBounds(0, 0, 470, 390);
         this.getContentPane().add(background);
 
@@ -69,10 +72,11 @@ public class LoginJFarme extends JFrame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == loginButton) {
-            String user = username.getText();
-            String pwd = new String(password.getPassword());
+        JLabel source = (JLabel) e.getSource();
+        String user = username.getText();
+        String pwd = new String(password.getPassword());
 
+        if (source.getIcon().toString().contains("登录按钮")) {
             if (userInfo.containsKey(user) && userInfo.get(user).equals(pwd)) {
                 JOptionPane.showMessageDialog(this, "登录成功");
                 this.setVisible(false);
@@ -80,9 +84,7 @@ public class LoginJFarme extends JFrame implements MouseListener {
             } else {
                 JOptionPane.showMessageDialog(this, "用户名或密码错误");
             }
-        }
-
-        if (e.getSource() == registerButton) {
+        } else {
             this.setVisible(false);
             new RegesterJFrame();
         }
