@@ -41,7 +41,7 @@ public class Person {
     }
 
     public void drive(Vehicle vehicle) {
-        //表示当前的交通攻击正在行驶
+        //表示当前的交通工具正在行驶
         vehicle.move();
         //响铃，鸣笛
         if(vehicle instanceof Bicycle){
